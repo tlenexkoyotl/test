@@ -1,0 +1,15 @@
+{
+  "name": "question7-component",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive -u tdd"
+  },
+  "author": "tlenexkoyotl",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2"
+  }
+}

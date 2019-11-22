@@ -1,0 +1,73 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../file-drop-zone/file-drop-zone.html">
+
+<dom-module id="question5-component">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+
+            img {
+                width: 500px;
+            }
+
+            file-drop-zone.dragover {
+                border: 1px dashed grey;
+            }
+
+            file-drop-zone.errored {
+                border: 1px dashed red;
+            }
+
+            file-drop-zone[has-files] {
+                border: 1px solid grey;
+            }
+        </style>
+        <h2>Hello, give me a picture!</h2>
+        <paper-input placeholder="SRC" on-change="__srcChanged"></paper-input>
+        <img src="[[src]]" alt="This is a picture's preview">
+        <file-drop-zone accept="image/*" files="{{src}}" on-change="__srcDropped">
+            <div slot="drop-zone">
+                <iron-icon icon="description"></iron-icon>
+                <h3>Drop your file here</h3>
+            </div>
+        </file-drop-zone>
+    </template>
+
+    <script>
+        /**
+         * `question5-component`
+         *
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class Question5Component extends Polymer.Element {
+            static get is() {
+                return 'question5-component';
+            }
+
+            static get properties() {
+                return {
+                    src: {
+                        type: String
+                    }
+                };
+            }
+
+            __srcChanged(event) {
+                this.src = event.currentTarget.value;
+            }
+
+            __srcDropped(event) {
+                this.src = event.currentTarget.value;
+            }
+        }
+
+        window.customElements.define(Question5Component.is, Question5Component);
+    </script>
+</dom-module>

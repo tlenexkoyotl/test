@@ -1,0 +1,70 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-input/iron-input.html">
+
+<dom-module id="question4-component">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+
+            .likes {
+                color: var(--question4-component-likes-color, #888888);
+            }
+        </style>
+        <h2>Hello, there, my name's [[name]]!, I'm [[age]] years old c:</h2>
+        <iron-input bind-value="{{name}}">
+            <input type="text" value="{{name::input}}">
+        </iron-input>
+        <ul class="likes">
+            <dom-repeat items="[[likes]]" as="like">
+                <template>
+                    <li><span>[[like]]</span></li>
+                </template>
+            </dom-repeat>
+        </ul>
+    </template>
+
+    <script>
+        /**
+         * `question4-component`
+         *
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class Question4Component extends Polymer.Element {
+            static get is() {
+                return 'question4-component';
+            }
+
+            static get properties() {
+                return {
+                    name: {
+                        type: String,
+                        value: 'Shrek',
+                        notify: true
+                    },
+                    age: {
+                        type: Number,
+                        value: 19,
+                        notify: true,
+                        observer: '__ageChanged'
+                    },
+                    likes: {
+                        type: Array,
+                        value: ['hot tamale', 'champurrado atole', 'Donkey', 'Fionna'],
+                        notify: true
+                    }
+                };
+            }
+
+            __ageChanged() {
+                this.dispatchEvent(new Event('age-changed'));
+            }
+        }
+
+        window.customElements.define(Question4Component.is, Question4Component);
+    </script>
+</dom-module>
